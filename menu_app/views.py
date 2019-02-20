@@ -13,6 +13,10 @@ def menu_show_data(request):
     position_id=request.GET.get('position_id')
     city_id=request.GET.get('city_id')
     page=request.GET.get('page')
+    if not city_id:
+        city_id=1
+    else:
+        city_id=int(city_id)
     if not page:
         page=1
     else:

@@ -3,11 +3,11 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>百智招聘</title>
-	<link href="style/authority/main_css.css" rel="stylesheet" type="text/css" />
-	<link href="style/authority/zTreeStyle.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="scripts/jquery/jquery-1.7.1.js"></script>
-	<script type="text/javascript" src="scripts/zTree/jquery.ztree.core-3.2.js"></script>
-	<script type="text/javascript" src="scripts/authority/commonAll.js"></script>
+	<link href="/static/style/authority/main_css.css" rel="stylesheet" type="text/css" />
+	<link href="/static/style/authority/zTreeStyle.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="/static/scripts/jquery/jquery-1.7.1.js"></script>
+	<script type="text/javascript" src="/static/scripts/zTree/jquery.ztree.core-3.2.js"></script>
+	<script type="text/javascript" src="/static/scripts/authority/commonAll.js"></script>
 	<script type="text/javascript">
 		/* zTree插件加载目录的处理  */
 		var zTree;
@@ -168,22 +168,22 @@
             {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":5,"resourceName":"广州","resourceOrder":0,"resourceType":""},
             {"accessPath":"","checked":false,"delFlag":0,"parentID":1,"resourceCode":"","resourceDesc":"","resourceGrade":2,"resourceID":6,"resourceName":"深圳","resourceOrder":0,"resourceType":""},
 
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":7,"resourceName":"Python Web","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":8,"resourceName":"爬虫","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":9,"resourceName":"大数据","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":10,"resourceName":"AI","resourceOrder":0,"resourceType":""},
-			{"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":11,"resourceName":"Python Web","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":12,"resourceName":"爬虫","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":13,"resourceName":"大数据","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":14,"resourceName":"AI","resourceOrder":0,"resourceType":""},
-			{"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":5,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":15,"resourceName":"Python Web","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":5,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":16,"resourceName":"爬虫","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":5,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":17,"resourceName":"大数据","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":5,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":18,"resourceName":"AI","resourceOrder":0,"resourceType":""},
-			{"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":15,"resourceName":"Python Web","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":16,"resourceName":"爬虫","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":17,"resourceName":"大数据","resourceOrder":0,"resourceType":""},
-            {"accessPath":"menu.html","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":18,"resourceName":"AI","resourceOrder":0,"resourceType":""}];
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=1&position_id=web","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":7,"resourceName":"Python Web","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=1&position_id=爬虫","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":8,"resourceName":"爬虫","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=1&position_id=大数据","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":9,"resourceName":"大数据","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=1&position_id=AI","checked":false,"delFlag":0,"parentID":3,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":10,"resourceName":"AI","resourceOrder":0,"resourceType":""},
+			{"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=2&position_id=web","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":11,"resourceName":"Python Web","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=2&position_id=爬虫","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":12,"resourceName":"爬虫","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=2&position_id=大数据","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":13,"resourceName":"大数据","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=2&position_id=AI","checked":false,"delFlag":0,"parentID":4,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":14,"resourceName":"AI","resourceOrder":0,"resourceType":""},
+			{"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=3&position_id=web","checked":false,"delFlag":0,"parentID":5,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":15,"resourceName":"Python Web","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=3&position_id=爬虫","checked":false,"delFlag":0,"parentID":5,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":16,"resourceName":"爬虫","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=3&position_id=大数据","checked":false,"delFlag":0,"parentID":5,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":17,"resourceName":"大数据","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=3&position_id=AI","checked":false,"delFlag":0,"parentID":5,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":18,"resourceName":"AI","resourceOrder":0,"resourceType":""},
+			{"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=4&position_id=web","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":15,"resourceName":"Python Web","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=4&position_id=爬虫","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":16,"resourceName":"爬虫","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=4&position_id=大数据","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":17,"resourceName":"大数据","resourceOrder":0,"resourceType":""},
+            {"accessPath":"{% url 'menu_app:menu_show_data' %}?city_id=4&position_id=AI","checked":false,"delFlag":0,"parentID":6,"resourceCode":"","resourceDesc":"","resourceGrade":3,"resourceID":18,"resourceName":"AI","resourceOrder":0,"resourceType":""}];
 
             if(data != null){
                 // 将返回的数据赋给zTree
@@ -212,7 +212,7 @@
 <body >
     <div id="top">
 		<div id="top_logo">
-			<img alt="logo" src="images/common/logo.jpg" width="274" height="49" style="vertical-align:middle;">
+			<img alt="logo" src="/static/images/common/logo.jpg" width="274" height="49" style="vertical-align:middle;">
 		</div>
 		
 	
@@ -227,13 +227,13 @@
 			
 			<div id="nav_show" style="position:absolute; bottom:0px; padding:10px;">
 				<a href="javascript:;" id="show_hide_btn">
-					<img alt="显示/隐藏" title="显示/隐藏" src="images/common/nav_hide.png" width="35" height="35">
+					<img alt="显示/隐藏" title="显示/隐藏" src="/static/images/common/nav_hide.png" width="35" height="35">
 				</a>
 			</div>
 		 </div>
 		 <div id="left_menu_cnt">
 		 	<div id="nav_module">
-		 		<img src="images/common/module_1.png" width="210" height="58"/>
+		 		<img src="/static/images/common/module_1.png" width="210" height="58"/>
 		 	</div>
 		 	<div id="nav_resource">
 		 		<ul id="dleft_tab1" class="ztree"></ul>

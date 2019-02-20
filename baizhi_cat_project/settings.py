@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login_regist_app',
+    'menu_app',
+    'main_app'
 ]
 
 MIDDLEWARE = [
@@ -78,13 +80,14 @@ WSGI_APPLICATION = 'baizhi_cat_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'ssss',
-        'PORT':3306,
-        'HOST':'localhost',
-        'PASSWORD':'123456',
+        'NAME': 'ssss',
+        'PASSWORD': '123456',
+        'PORT': '3306',
+        'HOST': '172.16.13.9',
         'USER':'root',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -108,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'zh-hans'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Shanghai'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -123,4 +126,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), STATIC_URL]
+
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static')]

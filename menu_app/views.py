@@ -25,5 +25,5 @@ def menu_show_data(request):
     data=Job.objects.filter(job_name__contains=position_id).filter(company_addr__contains=CITYID[city_id]).values()
     pagtor = Paginator(data, per_page=10)
     data = pagtor.page(page)
-    return render(request,'menu.html',{"data":data})
+    return render(request,'menu.html',{"data":data,'position_id':position_id,'city_id':city_id})
 

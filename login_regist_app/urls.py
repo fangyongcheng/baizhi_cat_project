@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from login_regist_app import views
+
+app_name='login_regist_app'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', views.login, name='login'),
+    path('login_logic/', views.login_logic, name='login_logic'),
+    path('login_ok/', views.login_ok, name='login_ok'),
+
 ]

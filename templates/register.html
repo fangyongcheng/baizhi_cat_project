@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html>
 <head>
 <title>Home</title>
@@ -11,7 +12,7 @@
 <link href='https://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
 <!-- /font files  -->
 <!-- css files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' media="all" />
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' media="all" />
 <!-- /css files -->
 </head>
 <body>
@@ -19,12 +20,21 @@
 <div class="log">
 	<div class="content2">
 		<h2>Register</h2>
-		<form>
-			<input type="text" name="userid" value="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'NAME AND SURNAME';}">
-			<input type="tel" name="usrtel" value="PHONE" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PHONE';}">
-			<input type="email" name="email" value="EMAIL ADDRESS" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'EMAIL ADDRESS';}">
-			<input type="password" name="psw" value="PASSWORD" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PASSWORD';}">
-			<input type="submit" class="register" value="Register">
+		<form  action="{% url 'login_regist_app:registlogic'%}" method="post">
+            {% csrf_token %}
+			<input id="id_username" type="text" name="username" value="USERNAME" onblur="pdusername();" onfocus="if (this.value=='USERNAME' ){this.value = '';}">
+            <br>
+            <span id="sp_username"></span>
+			<input id="id_phone" type="tel" name="phone" value="PHONE" onfocus="if (this.value=='PHONE'){this.value = '';}" onblur="pdpthone();">
+			<br>
+            <span id="sp_phone"></span>
+            <input id="id_email" type="email" name="email" value="EMAIL ADDRESS" onfocus="if (this.value=='EMAIL ADDRESS'){this.value = '';}" onblur="pdemail();">
+            <br>
+            <span id="sp_email"></span>
+			<input id="id_password" type="password" name="pwd" value="PASSWORD" onfocus="if (this.value=='PASSWORD'){this.value = '';}" onblur="checkpwd()">
+            <br>
+            <span id="sp_password"></span>
+			<input type="submit" class="register" value="Register" onclick="return checkstatus();">
 		</form>
 	</div>
 	<div class="clear"></div>
@@ -32,6 +42,95 @@
 <div class="footer">
 	<p>Copyright &copy;  <a href="http://www.baizhiedu.com/" target="_blank" title="百知教育">百知教育</a></p>
 </div>
-
+<script src="{% static 'jq/jquery-1.11.1.js' %}"></script>
+<script type="text/javascript">
+    function pdusername() {
+        username=document.getElementById('id_username');
+        if (username.value=='')
+        {document.getElementById('id_username').value='USERNAME';}
+        $.ajax({
+            type:'get',
+            url:'{% url 'login_regist_app:usernameajax'%}',
+            data:'username='+username.value,
+            success:function (meg) {
+                sp_username=document.getElementById('sp_username');
+                if(meg == "该用户名已注册"){
+                   sp_username .innerHTML='该用户名已注册';
+                   sp_username.style.color='red'
+                }else if (meg == "该用户名可用"){
+                    sp_username.innerHTML='该用户名可用';
+                    sp_username.style.color='white'
+                }
+            }
+        })
+    }
+    function pdpthone() {
+        phone=document.getElementById('id_phone');
+        sp_phone=document.getElementById('sp_phone');
+         var reg2=/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if (phone.value=='PHONE'){
+            sp_phone.innerHTML='请填写手机号';
+            sp_phone.style.color='white'
+        }else if(phone.value==''){
+            phone.value='PHONE';
+            sp_phone.innerHTML='请填写手机号';
+            sp_phone.style.color='white'
+        }else if(reg2.test(phone.value)){
+            sp_phone.innerHTML='手机号可用';
+            sp_phone.style.color='white'
+        }else {
+            sp_phone.innerHTML='手机号格式不正确';
+            sp_phone.style.color='white'
+        }
+    }
+    function pdemail() {
+        email=document.getElementById('id_email');
+        sp_email=document.getElementById('sp_email');
+         var reg=/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        if (email.value=='EMAIL ADDRESS'){
+            sp_email.innerHTML='请填写邮箱';
+            sp_email.style.color='white'
+        }else if(email.value==''){
+            email.value='EMAIL ADDRESS';
+            sp_email.innerHTML='请填写邮箱';
+            sp_email.style.color='white'
+        }else if(reg.test(email.value)){
+            sp_email.innerHTML='邮箱可用';
+            sp_email.style.color='white'
+        }else {
+            sp_email.innerHTML='邮箱格式不正确';
+            sp_email.style.color='white'
+        }
+    }
+       function checkpwd() {
+        pwd=document.getElementById("id_password");
+        s4=document.getElementById("sp_password");
+        if (pwd.value=='PASSWORD'){
+            s4.innerHTML='请填写密码';
+            s4.style.color='white'
+        }else if(pwd.value==''){
+            pwd.value='PASSWORD';
+            s4.innerHTML='请填写密码';
+            s4.style.color='white';
+        }else if (pwd.value.length<=20&& pwd.value.length>=6) {
+            s4.innerHTML="密码可用";
+             s4.style.color='white';
+        }else {
+            s4.innerHTML="密码不合法，请输入6-20位";
+             s4.style.color='white';
+        }
+    }
+    function checkstatus() {
+        username=document.getElementById("sp_username").innerHTML;
+        pwd=document.getElementById("sp_password").innerHTML;
+        email=document.getElementById("sp_email").innerHTML;
+        phone=document.getElementById("sp_phone").innerHTML;
+        if (username=="该用户名可用" && phone=="手机号可用" && email=="邮箱可用" && pwd=="密码可用" ){
+            return true
+        }else {
+            return false
+        }
+    }
+</script>
 </body>
 </html>

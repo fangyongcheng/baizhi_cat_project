@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
+{% load static %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="scripts/jquery/jquery-1.7.1.js"></script>
-<link href="style/authority/basic_layout.css" rel="stylesheet" type="text/css">
-<link href="style/authority/common_style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="scripts/authority/commonAll.js"></script>
-<script type="text/javascript" src="scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
-<script type="text/javascript" src="scripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-<link rel="stylesheet" type="text/css" href="style/authority/jquery.fancybox-1.3.4.css" media="screen"></link>
-<script type="text/javascript" src="scripts/artDialog/artDialog.js?skin=default"></script>
+<script type="text/javascript" src="/static/scripts/jquery/jquery-1.7.1.js"></script>
+<link href="/static/style/authority/basic_layout.css" rel="stylesheet" type="text/css">
+<link href="/static/style/authority/common_style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/scripts/authority/commonAll.js"></script>
+<script type="text/javascript" src="/static/scripts/fancybox/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="/static/scripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/style/authority/jquery.fancybox-1.3.4.css" media="screen"></link>
+<script type="text/javascript" src="/static/scripts/artDialog/artDialog.js?skin=default"></script>
 <title>百智招聘</title>
 <script type="text/javascript">
 </script>
@@ -27,13 +28,13 @@
 						<div id="box_top">搜索</div>
 						<div id="box_center">
 							<select name="fangyuanEntity.fyXqCode" id="fyXq" class="ui_select01" onchange="getFyDhListByFyXqCode();">
-                                <option value=""
+                                <option value="" id="a"
                                 >--请选择--</option>
                                 <option value="">城市</option>
                                 <option value="">职位</option>
                             </select>
 							<input type="text" id="fyZldz" name="fangyuanEntity.fyZldz" class="ui_input_txt02" />
-							<input type="button" value="查询" class="ui_input_btn01" onclick="search();" /> 
+							<input type="button" value="查询" class="ui_input_btn01" onclick="search(); "/>
 						</div>
 					</div>
 				</div>
@@ -53,6 +54,20 @@
 							<th>公司地点</th>
 							<th>部门</th>
 						</tr>
+                        {% for i in data.object_list %}
+                            <tr>
+
+								<td>{{ i.job_name }}</td>
+								<td>{{ i.company_name }}</td>
+								<td>{{ i.salary }}</td>
+								<td>{{ i.job_req }}</td>
+								<td>{{ i.experice_req }}</td>
+								<td>{{ i.edu_req }}</td>
+								<td>{{ i.company_addr }}</td>
+								<td>研发部</td>
+
+							</tr>
+                        {% endfor %}
 							<tr>
 								
 								<td>AI</td>
@@ -82,9 +97,13 @@
 						<!--    如果是第一页，则只显示下一页、尾页 -->
 						
 							<input type="button" value="首页" class="ui_input_btn01" />
-							<input type="button" value="上一页" class="ui_input_btn01" />
-							<input type="button" value="下一页" class="ui_input_btn01"
-								onclick="jumpNormalPage(2);" />
+                                {% if page.has_previous %}             {# 是否有上一页 #}
+							        <input type="button" value="上一页" class="ui_input_btn01" />
+                                {% endif %}
+                                {% if page.has_next %}
+							        <input type="button" value="下一页" class="ui_input_btn01"
+								    onclick="jumpNormalPage(2);" />
+                                {% endif %}
 							<input type="button" value="尾页" class="ui_input_btn01"
 								onclick="jumpNormalPage(9);" />
 							<!--     如果是最后一页，则只显示首页、上一页 -->
@@ -96,6 +115,13 @@
 			</div>
 		</div>
 	</form>
-
+    <script>
+        setInterval(function(){
+            if(document.getElementById('a').innerHTML=='城市' || document.getElementById('a').innerHTML=='职位'){
+                document.getElementsByClassName('ui_input_btn01')[0].disabled=false
+            }
+            else{document.getElementsByClassName('ui_input_btn01')[0].disabled=true}
+        },100)
+    </script>
 </body>
 </html>

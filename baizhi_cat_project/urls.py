@@ -20,7 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('menu_app/',include('menu_app.urls')),
     path('main_app/',include('main_app.urls')),
-    path('index/', include('login_regist_app')),
     path('login_regist_app/', include('login_regist_app.urls'))
 
 ]

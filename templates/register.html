@@ -23,17 +23,16 @@
 		<form  action="{% url 'login_regist_app:registlogic'%}" method="post">
             {% csrf_token %}
 			<input id="id_username" type="text" name="username" value="USERNAME" onblur="pdusername();" onfocus="if (this.value=='USERNAME' ){this.value = '';}">
-            <br>
-            <span id="sp_username"></span>
+            <div><span id="sp_username" ></span></div>
 			<input id="id_phone" type="tel" name="phone" value="PHONE" onfocus="if (this.value=='PHONE'){this.value = '';}" onblur="pdpthone();">
-			<br>
-            <span id="sp_phone"></span>
+            <div>
+                <span id="sp_phone"></span></div>
             <input id="id_email" type="email" name="email" value="EMAIL ADDRESS" onfocus="if (this.value=='EMAIL ADDRESS'){this.value = '';}" onblur="pdemail();">
-            <br>
-            <span id="sp_email"></span>
+            <div>
+                <span id="sp_email"></span></div>
 			<input id="id_password" type="password" name="pwd" value="PASSWORD" onfocus="if (this.value=='PASSWORD'){this.value = '';}" onblur="checkpwd()">
-            <br>
-            <span id="sp_password"></span>
+            <div>
+                <span id="sp_password"></span></div>
 			<input type="submit" class="register" value="Register" onclick="return checkstatus();">
 		</form>
 	</div>

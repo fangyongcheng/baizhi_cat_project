@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+{% load static %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="/static/scripts/jquery/jquery-1.7.1.js"></script>
@@ -53,6 +54,20 @@
 							<th>公司地点</th>
 							<th>部门</th>
 						</tr>
+                        {% for i in data.object_list %}
+                            <tr>
+
+								<td>{{ i.job_name }}</td>
+								<td>{{ i.company_name }}</td>
+								<td>{{ i.salary }}</td>
+								<td>{{ i.job_req }}</td>
+								<td>{{ i.experice_req }}</td>
+								<td>{{ i.edu_req }}</td>
+								<td>{{ i.company_addr }}</td>
+								<td>研发部</td>
+
+							</tr>
+                        {% endfor %}
 							<tr>
 								
 								<td>AI</td>
@@ -82,9 +97,13 @@
 						<!--    如果是第一页，则只显示下一页、尾页 -->
 						
 							<input type="button" value="首页" class="ui_input_btn01" />
-							<input type="button" value="上一页" class="ui_input_btn01" />
-							<input type="button" value="下一页" class="ui_input_btn01"
-								onclick="jumpNormalPage(2);" />
+                                {% if page.has_previous %}             {# 是否有上一页 #}
+							        <input type="button" value="上一页" class="ui_input_btn01" />
+                                {% endif %}
+                                {% if page.has_next %}
+							        <input type="button" value="下一页" class="ui_input_btn01"
+								    onclick="jumpNormalPage(2);" />
+                                {% endif %}
 							<input type="button" value="尾页" class="ui_input_btn01"
 								onclick="jumpNormalPage(9);" />
 							<!--     如果是最后一页，则只显示首页、上一页 -->

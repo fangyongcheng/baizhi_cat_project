@@ -20,12 +20,13 @@
 <div class="log">
 	<div class="content1">
 		<h2>Login</h2>
-		<form action="{% url 'login_regist_app:login' %}" method="post">
+		<form action="{% url 'login_regist_app:regist' %}" method="post">
+            {% csrf_token %}
 			<input type="text" id="name" name="userid" value="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}">
 			<input type="password" id="pwd" name="psw" value="PASSWORD" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'PASSWORD';}">
 			<div class="button-row">
 				<input type="button" class="sign-in" value="Sign In" onclick="check()"/>
-				<input type="button" class="reset" value="Reset">
+				<input type="submit" class="reset" value="Reset">
 				<div class="clear"></div>
 			</div>
 		</form>
@@ -65,9 +66,6 @@
         }
 
     }
-
-
-
 
 </script>
 

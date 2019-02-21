@@ -107,13 +107,17 @@
 							<!--     如果是最后一页，则只显示首页、上一页 -->
 						
 						转到第<input type="text" id="jumpNumTxt" class="ui_input_txt01" />页
-							 <input type="button" class="ui_input_btn01" value="跳转" onclick="jumpInputPage(9);" />
+							 <input type="button" class="ui_input_btn01" value="跳转" id='jump' onclick="jump()" />
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
     <script>
+        function jump(){
+            page=document.getElementById('jump').value();
+            location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&posttion_id={{ posttion_id }}&city_id={{ city_id }}"
+        }
         setInterval(function(){
             if(document.getElementById('fyXq').innerHTML=='城市' || document.getElementById('fyXq').innerHTML=='职位'){
                 document.getElementsByClassName('ui_input_btn01')[0].disabled=false

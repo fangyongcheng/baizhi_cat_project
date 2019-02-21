@@ -4,8 +4,8 @@ from django.shortcuts import render,redirect,HttpResponse
 def main_show(request):
     return render(request,'main.html')
 
-def main_logic(request):
-    pass
+def introduce_show(request):
+    return render(request,'introduce.html')
 
 def text(request):
     print(request.GET.get('resourceName'))

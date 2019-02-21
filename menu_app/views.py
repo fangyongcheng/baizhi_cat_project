@@ -19,7 +19,7 @@ def menu_show_data(request):
         if flag=="1":
             data = Job.objects.filter(company_addr__contains=keyword).values()
         else:
-            data = Job.objects.filter(job_name=keyword).values()
+            data = Job.objects.filter(job_name__contains=keyword).values()
     else:
         if city_id == '':
             city_id = 1

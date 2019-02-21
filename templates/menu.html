@@ -120,16 +120,18 @@
             location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"
         }
         function search(){
+
             tiaojian1=document.getElementById('fyXq').value;
             tiaojian2=document.getElementById('fyZldz').value;
-            $.ajax({
-           type:"get",
-           url:"{% url 'menu_app:menu_show_data' %}",
-           data:"flag="+tiaojian1+"&keyword="+tiaojian2+"&city_id=&position_id=&",
-           success:function (msg) {
-
-           }
-        })
+            location.href={% url 'menu_app:menu_show_data' %}?"flag="+tiaojian1+"&keyword="+tiaojian2+"&city_id=&position_id=&";
+{#            $.ajax({#}
+{#           type:"get",#}
+{#           url:"{% url 'menu_app:menu_show_data' %}",#}
+{#           data:"flag="+tiaojian1+"&keyword="+tiaojian2+"&city_id=&position_id=&",#}
+{#           success:function (msg) {#}
+{##}
+{#           }#}
+{#        })#}
         }
     </script>
 </body>

@@ -34,7 +34,14 @@
                                 <option value="2">职位</option>
                             </select>
 							<input type="text" id="fyZldz" name="fangyuanEntity.fyZldz" class="ui_input_txt02" />
-							<input type="button" value="查询" class="ui_input_btn01" onclick="search(); "/>
+							<input type="button" value="查询" class="ui_input_btn01" onclick="search()"/>
+                            <script>
+                                function search(){
+                                    console.log(111);
+                                    tiaojian1=document.getElementById('fyXq').value;
+                                    tiaojian2=document.getElementById('fyZldz').value;
+                                    location.href={% url 'menu_app:menu_show_data' %}?"flag="+tiaojian1+"&keyword="+tiaojian2+"&city_id=&position_id="}
+                            </script>
 						</div>
 					</div>
 				</div>
@@ -98,7 +105,11 @@
 						
 							<a href="{% url 'menu_app:menu_show_data' %}?page=1&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="首页" class="ui_input_btn01" /></a>
                                 {% if data.has_previous %}             {# 是否有上一页 #}
+<<<<<<< Updated upstream
 							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.previous_page_number }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="上一页" class="ui_input_btn01" /></a>
+=======
+							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.previous_page_number }}&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="上一页" class="ui_input_btn01" /></a>
+>>>>>>> Stashed changes
                                 {% endif %}
                                 {% if data.has_next %}
 							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.next_page_number }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="下一页" class="ui_input_btn01" /></a>
@@ -120,6 +131,7 @@
             location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&city_id={{ city_id }}"
         }
         function search(){
+<<<<<<< Updated upstream
             tiaojian1=document.getElementById('fyXq').value;
             tiaojian2=document.getElementById('fyZldz').value;
             $.ajax({
@@ -130,6 +142,20 @@
                
            }
         })
+=======
+            console.log(111);
+            tiaojian1=document.getElementById('fyXq').value;
+            tiaojian2=document.getElementById('fyZldz').value;
+            location.href={% url 'menu_app:menu_show_data' %}?"flag="+tiaojian1+"&keyword="+tiaojian2+"&city_id=&position_id="
+{#            $.ajax({#}
+{#           type:"get",#}
+{#           url:"{% url 'menu_app:menu_show_data' %}",#}
+{#           data:"flag="+tiaojian1+"&keyword="+tiaojian2+"&city_id=&position_id=&",#}
+{#           success:function (msg) {#}
+{##}
+{#           }#}
+{#        })#}
+>>>>>>> Stashed changes
         }
     </script>
 </body>

@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'baizhi_cat_project.againstClawlerMiddleware.MyMiddleAware',
     'MyMiddleware.MyMiddleAware',
 ]
 

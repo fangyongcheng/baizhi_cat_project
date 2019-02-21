@@ -21,5 +21,6 @@ app_name='menu_app'
 urlpatterns = [
     path('menu_view/',views.menu_view,name='menu_view'),
     path('menu_show_data/',views.menu_show_data,name='menu_show_data'),
+    # path('menu_show_error/',views.menu_show_error,name='menu_show_error'),
 
 ]

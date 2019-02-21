@@ -10,18 +10,28 @@ def menu_view(request):
     return render(request,'menu.html')
 
 def menu_show_data(request):
-    position_id=request.GET.get('position_id')
-    city_id=request.GET.get('city_id')
-    page=request.GET.get('page')
-    if not city_id:
-        city_id=1
+    keyword = request.GET.get('keyword')
+    page = request.GET.get('page')
+    position_id = request.GET.get('position_id')
+    flag=request.GET.get('flag')
+    city_id = request.GET.get('city_id')
+    if flag=='1' or flag =='2':
+        if flag=="1":
+            data = Job.objects.filter(company_addr__contains=keyword).values()
+        else:
+            data = Job.objects.filter(job_name=keyword).values()
     else:
-        city_id=int(city_id)
+        if city_id == '':
+            city_id = 1
+        else:
+            city_id = int(city_id)
+        data = Job.objects.filter(job_name__contains=position_id).filter(
+            company_addr__contains=CITYID[city_id]).values()
+
     if not page:
-        page=1
+        page = 1
     else:
-        page=int(page)
-    data=Job.objects.filter(job_name__contains=position_id).filter(company_addr__contains=CITYID[city_id]).values()
+        page = int(page)
     pagtor = Paginator(data, per_page=10)
     data = pagtor.page(page)
     page_count=divmod(pagtor.count,10)[0]
@@ -35,5 +45,7 @@ def menu_show_data(request):
                    "page_count":page_count,
                    "data_count":data_count,
                    "page":page,
+                   "keyword":keyword,
+                   "flag":flag,
                    })
 

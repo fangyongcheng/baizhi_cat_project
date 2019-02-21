@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证信息</title>
+</head>
+<style>
+    body{
+        background-color: yellow;
+    }
+    #box{
+        width: 300px;
+        height: 230px;
+        margin: auto;
+        margin-top: 30px;
+        background-color: greenyellow;
+    }
+    #b1{
+        width: 200px;
+        height: 80px;
+        margin: auto;
+        padding-top: 20px;
+
+    }
+    #b2{
+        text-align: center;
+        line-height: 30px;
+        font-size: 20px;
+    }
+    #b3{
+        width: 200px;
+        height: 30px;
+        margin-left: 50px;
+        margin-top: 5px;
+        }
+    #b4{
+        width: 205px;
+        height: 30px;
+        margin-left: 50px;
+        margin-top: 10px;
+    }
+
+
+</style>
+<body>
+    <div style="text-align: center;font-size: 50px;line-height: 200px">
+        <span>请验证身份信息</span>
+    </div>
+    <div id="box">
+        <form action="{% url 'main_app:check_captcha' %}" method="get">
+            <div id="b1">
+                <img src="{% url 'main_app:getcaptcha' %}" id="image_code" width="200px" height="70px" align="center">
+            </div>
+            <div id="b2">
+                <a href="javascript:void(0)" onclick="change()">看不清，换一张</a>
+            </div>
+            <div >
+                <input type="text" name="code_id" id="b3">
+            </div>
+            <div >
+                <input type="submit" value="Submit" id="b4">
+            </div>
+        </form>
+    </div>
+
+
+
+
+</body>
+
+<script>
+    function change() {
+        url=document.getElementById("image_code");
+        url.src="{% url 'main_app:getcaptcha' %}?"+new Date().getTime();
+
+    }
+</script>
+</html>

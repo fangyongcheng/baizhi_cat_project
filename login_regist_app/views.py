@@ -11,7 +11,6 @@ def login(request):
     pwd=request.COOKIES.get('psw')
     user=User.objects.filter(username=name,password=pwd)
     if user:
-        request.session['flag'] = 'ok'   #记录下登录状态， OK时候登录，保持登录
         return redirect('main_app:main')
     else:
         return render(request, 'login.html')
@@ -21,6 +20,7 @@ def login_logic(request):
     pwd=request.POST.get('pwd')
     user=User.objects.filter(username=name,password=pwd)
     if user:
+        request.session['flag'] = 'ok'  # 记录下登录状态， OK时候登录，保持登录
         return HttpResponse('成功')
     else:
         return HttpResponse('用户名或密码错误！')

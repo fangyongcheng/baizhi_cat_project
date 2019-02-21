@@ -23,5 +23,8 @@ urlpatterns = [
     path('main/',views.main_show,name='main'),
     path('text/',views.text,name='text'),
     path('introduce_show/',views.introduce_show,name='introduce'),
+    path('captcha_url/',views.captcha_url,name='captcha_url'),
+    path('getcaptcha/',views.getcaptcha,name='getcaptcha'),
+    path('check_captcha/',views.check_captcha,name='check_captcha'),
 
 ]

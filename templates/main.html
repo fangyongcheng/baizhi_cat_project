@@ -223,7 +223,7 @@
 		 	<ul id="TabPage2" style="height:200px; margin-top:50px;">
 				
 			</ul>
-			
+
 			
 			<div id="nav_show" style="position:absolute; bottom:0px; padding:10px;">
 				<a href="javascript:;" id="show_hide_btn">
@@ -241,6 +241,14 @@
 		 </div>
 	</div>
 	<script type="text/javascript">
+
+        //定时任务，没各10分钟进行一次身份验证
+        setInterval(fn,600000);
+        function fn() {
+            location.href="/main_app/captcha_url/"
+        }
+
+
 		$(function(){
 			$('#TabPage2 li').click(function(){
 				var index = $(this).index();

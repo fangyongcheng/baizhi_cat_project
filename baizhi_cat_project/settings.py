@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'login_regist_app.middleware.MyMiddleAware',#注册自定义中间件
     'baizhi_cat_project.againstClawlerMiddleware.MyMiddleAware',
     'MyMiddleware.MyMiddleAware',
 ]
@@ -130,3 +131,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE=True

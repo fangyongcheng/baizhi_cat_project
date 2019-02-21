@@ -96,14 +96,14 @@
 					<div class="ui_frt">
 						<!--    如果是第一页，则只显示下一页、尾页 -->
 						
-							<a href="{% url 'menu_app:menu_show_data' %}?page=1&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="首页" class="ui_input_btn01" /></a>
+							<a href="{% url 'menu_app:menu_show_data' %}?page=1&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="首页" class="ui_input_btn01" /></a>
                                 {% if data.has_previous %}             {# 是否有上一页 #}
-							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.previous_page_number }}&position_id={{ posttion_id }}&city_id={{ city_id }}"><input type="button" value="上一页" class="ui_input_btn01" /></a>
+							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.previous_page_number }}&position_id={{ posttion_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="上一页" class="ui_input_btn01" /></a>
                                 {% endif %}
                                 {% if data.has_next %}
-							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.next_page_number }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="下一页" class="ui_input_btn01" /></a>
+							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.next_page_number }}&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="下一页" class="ui_input_btn01" /></a>
                                 {% endif %}
-							<a href="{% url 'menu_app:menu_show_data' %}?page={{ data.page_count }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="尾页" class="ui_input_btn01" /></a>
+							<a href="{% url 'menu_app:menu_show_data' %}?page={{ data.page_count }}&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="尾页" class="ui_input_btn01" /></a>
 							<!--     如果是最后一页，则只显示首页、上一页 -->
 						
 						转到第<input type="text" id="jumpNumTxt" class="ui_input_txt01" />页
@@ -117,7 +117,7 @@
         function jump1(){
             page=document.getElementById('jumpNumTxt').value;
             console.log(page);
-            location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&city_id={{ city_id }}"
+            location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"
         }
         function search(){
             tiaojian1=document.getElementById('fyXq').value;
@@ -125,9 +125,9 @@
             $.ajax({
            type:"get",
            url:"{% url 'menu_app:menu_show_data' %}",
-           data:"flag="+tiaojian1+"&keyword="+tiaojian2,
+           data:"flag="+tiaojian1+"&keyword="+tiaojian2+"&city_id=&position_id=&",
            success:function (msg) {
-               
+
            }
         })
         }

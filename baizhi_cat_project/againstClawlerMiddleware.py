@@ -12,7 +12,7 @@ class MyMiddleAware(MiddlewareMixin):  # 自定义的中间件
     def process_request(self, request):
         if request.META["HTTP_HOST"] in self.ips:
             self.ips[request.META["HTTP_HOST"]]+=1
-            if self.ips[request.META["HTTP_HOST"]]>=10:
+            if self.ips[request.META["HTTP_HOST"]]>=60:
                 if self.time_count<time.time():
                     self.time_count = time.time() + 60
                     self.ips={}

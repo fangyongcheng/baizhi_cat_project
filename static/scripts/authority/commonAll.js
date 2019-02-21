@@ -8,6 +8,7 @@ function getFyDhListByFyXqCode() {
 	var fyXq = $("#fyXq").val();
 	if (fyXq == "" || fyXq == null) {
 		$("#fyDh").html('<option value="">--请选择--</option>');
+
 	} else {
 		/** 异步加载栋号列表 * */
 		$.ajax({

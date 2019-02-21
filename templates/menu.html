@@ -30,8 +30,8 @@
 							<select name="fangyuanEntity.fyXqCode" id="fyXq" class="ui_select01" onchange="getFyDhListByFyXqCode();">
                                 <option value="" id="a"
                                 >--请选择--</option>
-                                <option value="">城市</option>
-                                <option value="">职位</option>
+                                <option value="1">城市</option>
+                                <option value="2">职位</option>
                             </select>
 							<input type="text" id="fyZldz" name="fangyuanEntity.fyZldz" class="ui_input_txt02" />
 							<input type="button" value="查询" class="ui_input_btn01" onclick="search(); "/>
@@ -86,44 +86,51 @@
 				<div class="ui_tb_h30">
 					<div class="ui_flt" style="height: 30px; line-height: 30px;">
 						共有
-						<span class="ui_txt_bold04">{{ data_count }}</span>
+						<span class="ui_txt_bold04">90</span>
 						条记录，当前第
-						<span class="ui_txt_bold04">{{ page }}
+						<span class="ui_txt_bold04">1
 						/
-						{{ page_count }}</span>
+						9</span>
 						页
 					</div>
 					<div class="ui_frt">
 						<!--    如果是第一页，则只显示下一页、尾页 -->
 						
-							<a href="{% url 'menu_app:menu_show_data' %}?page=1&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="首页" class="ui_input_btn01" /></a>
+							<a href="{% url 'menu_app:menu_show_data' %}?page=1&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="首页" class="ui_input_btn01" /></a>
                                 {% if data.has_previous %}             {# 是否有上一页 #}
-							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.previous_page_number }}&position_id={{ posttion_id }}&city_id={{ city_id }}"><input type="button" value="上一页" class="ui_input_btn01" /></a>
+							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.previous_page_number }}&position_id={{ posttion_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="上一页" class="ui_input_btn01" /></a>
                                 {% endif %}
                                 {% if data.has_next %}
-							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.next_page_number }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="下一页" class="ui_input_btn01" /></a>
+							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.next_page_number }}&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="下一页" class="ui_input_btn01" /></a>
                                 {% endif %}
-							<a href="{% url 'menu_app:menu_show_data' %}?page={{ data.page_count }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="尾页" class="ui_input_btn01" /></a>
+							<a href="{% url 'menu_app:menu_show_data' %}?page={{ data.page_count }}&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"><input type="button" value="尾页" class="ui_input_btn01" /></a>
 							<!--     如果是最后一页，则只显示首页、上一页 -->
 						
 						转到第<input type="text" id="jumpNumTxt" class="ui_input_txt01" />页
-							 <input type="button" class="ui_input_btn01" value="跳转" id='jump' onclick="jump()" />
+							 <input type="button" class="ui_input_btn01" value="跳转" id='jump' onclick="jump1()" />
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
     <script>
-        function jump(){
-            page=document.getElementById('jump').value();
-            location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&city_id={{ city_id }}"
+        function jump1(){
+            page=document.getElementById('jumpNumTxt').value;
+            console.log(page);
+            location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&flag={{ flag }}&keyword={{ keyword }}&city_id={{ city_id }}"
         }
-        setInterval(function(){
-            if(document.getElementById('fyXq').innerHTML=='城市' || document.getElementById('fyXq').innerHTML=='职位'){
-                document.getElementsByClassName('ui_input_btn01')[0].disabled=false
-            }
-            else{document.getElementsByClassName('ui_input_btn01')[0].disabled=true}
-        },100)
+        function search(){
+            tiaojian1=document.getElementById('fyXq').value;
+            tiaojian2=document.getElementById('fyZldz').value;
+            $.ajax({
+           type:"get",
+           url:"{% url 'menu_app:menu_show_data' %}",
+           data:"flag="+tiaojian1+"&keyword="+tiaojian2+"&city_id=&position_id=&",
+           success:function (msg) {
+
+           }
+        })
+        }
     </script>
 </body>
 </html>

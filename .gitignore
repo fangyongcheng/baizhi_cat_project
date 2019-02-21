@@ -1,5 +1,12 @@
 # Created by .ignore support plugin (hsz.mobi)
 .gitignore
-.idea/workspace.xml
+.idea/
 baizhi_cat_project/__pycache__/
 
+db.sqlite3
+login_regist_app/__pycache__/
+login_regist_app/migrations/__pycache__/
+main_app/__pycache__/
+main_app/migrations/__pycache__/
+menu_app/__pycache__/
+menu_app/migrations/__pycache__/

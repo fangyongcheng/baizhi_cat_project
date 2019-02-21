@@ -9,43 +9,43 @@ CITYID=['','北京','上海','广州','深圳']
 def menu_view(request):
     return render(request,'menu.html')
 
-
 def menu_show_data(request):
-    refer=request.META.get('HTTP_REFERER')
-    port=request.META.get('SERVER_PORT')
-    server_host=request.META.get('HTTP_HOST')
-    print('##########')
-    print(refer)
-    print(server_host)
-    print(port)
-    if refer=="http://%s/main_app/main/"%server_host:
-        position_id=request.GET.get('position_id')
-        city_id=request.GET.get('city_id')
-        page=request.GET.get('page')
-        if not city_id:
-            city_id=1
+    keyword = request.GET.get('keyword')
+    page = request.GET.get('page')
+    position_id = request.GET.get('position_id')
+    flag=request.GET.get('flag')
+    city_id = request.GET.get('city_id')
+    if flag=='1' or flag =='2':
+        if flag=="1":
+            data = Job.objects.filter(company_addr__contains=keyword).values()
         else:
-            city_id=int(city_id)
-        if not page:
-            page=1
-        else:
-            page=int(page)
-        data=Job.objects.filter(job_name__contains=position_id).filter(company_addr__contains=CITYID[city_id]).values()
-        pagtor = Paginator(data, per_page=10)
-        data = pagtor.page(page)
-        page_count=divmod(pagtor.count,10)[0]
-        if divmod(pagtor.count,10)[1] !=0:
-            page_count+=1
-        data_count=pagtor.count
-        return render(request,'menu.html',
-                      {"data":data,
-                       'position_id':position_id,
-                       'city_id':city_id,
-                       "page_count":page_count,
-                       "data_count":data_count,
-                       "page":page,
-                       })
-
+            data = Job.objects.filter(job_name=keyword).values()
     else:
-        return render(request, '404.html')
+        if city_id == '':
+            city_id = 1
+        else:
+            city_id = int(city_id)
+        data = Job.objects.filter(job_name__contains=position_id).filter(
+            company_addr__contains=CITYID[city_id]).values()
+
+    if not page:
+        page = 1
+    else:
+        page = int(page)
+    pagtor = Paginator(data, per_page=10)
+    data = pagtor.page(page)
+    page_count=divmod(pagtor.count,10)[0]
+    if divmod(pagtor.count,10)[1] !=0:
+        page_count+=1
+    data_count=pagtor.count
+    return render(request,'menu.html',
+                  {"data":data,
+                   'position_id':position_id,
+                   'city_id':city_id,
+                   "page_count":page_count,
+                   "data_count":data_count,
+                   "page":page,
+                   "keyword":keyword,
+                   "flag":flag,
+                   })
 

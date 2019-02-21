@@ -15,7 +15,7 @@ class MyMiddleAware(MiddlewareMixin):  # 自定义的中间件
             if self.ips[request.META["HTTP_HOST"]]>=60:
                 if self.time_count<time.time():
                     self.time_count = time.time() + 60
-                    self.ips={}
+                    self.ips[request.META["HTTP_HOST"]]=0
                 return render(request,'crawler_error.html')
 
         else:

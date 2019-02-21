@@ -37,7 +37,7 @@ def menu_show_data(request):
     try:
         data = pagtor.page(page)
     except:
-        return HttpResponse('不是我针对谁，我只想说屏幕面前各位都是垃圾！')
+        return render(request,'不是针对谁.html')
     else :
         page_count=divmod(pagtor.count,10)[0]
         if divmod(pagtor.count,10)[1] !=0:

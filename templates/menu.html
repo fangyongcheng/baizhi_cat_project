@@ -30,8 +30,8 @@
 							<select name="fangyuanEntity.fyXqCode" id="fyXq" class="ui_select01" onchange="getFyDhListByFyXqCode();">
                                 <option value="" id="a"
                                 >--请选择--</option>
-                                <option value="">城市</option>
-                                <option value="">职位</option>
+                                <option value="1">城市</option>
+                                <option value="2">职位</option>
                             </select>
 							<input type="text" id="fyZldz" name="fangyuanEntity.fyZldz" class="ui_input_txt02" />
 							<input type="button" value="查询" class="ui_input_btn01" onclick="search(); "/>
@@ -118,6 +118,18 @@
             page=document.getElementById('jumpNumTxt').value;
             console.log(page);
             location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&city_id={{ city_id }}"
+        }
+        function search(){
+            tiaojian1=document.getElementById('fyXq').value;
+            tiaojian2=document.getElementById('fyZldz').value;
+            $.ajax({
+           type:"get",
+           url:"{% url 'menu_app:menu_show_data' %}",
+           data:"flag="+tiaojian1+"&keyword="+tiaojian2,
+           success:function (msg) {
+               
+           }
+        })
         }
     </script>
 </body>

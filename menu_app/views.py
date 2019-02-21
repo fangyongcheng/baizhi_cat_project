@@ -12,9 +12,13 @@ def menu_view(request):
 
 def menu_show_data(request):
     refer=request.META.get('HTTP_REFERER')
+    port=request.META.get('SERVER_PORT')
+    server_host=request.META.get('HTTP_HOST')
     print('##########')
     print(refer)
-    if refer=="http://127.0.0.1:8000/main_app/main/":
+    print(server_host)
+    print(port)
+    if refer=="http://%s/main_app/main/"%server_host:
         position_id=request.GET.get('position_id')
         city_id=request.GET.get('city_id')
         page=request.GET.get('page')

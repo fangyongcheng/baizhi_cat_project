@@ -10,8 +10,6 @@ class MyMiddleAware(MiddlewareMixin):  # 自定义的中间件
         self.time_count=time.time()+60
     # view处理请求前执行
     def process_request(self, request):
-        print(request.META)
-        print(request.META["REMOTE_ADDR"])
         if request.META["REMOTE_ADDR"] in self.ips:
             self.ips[request.META["REMOTE_ADDR"]]+=1
             if self.ips[request.META["REMOTE_ADDR"]]>=60:

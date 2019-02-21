@@ -240,6 +240,24 @@
 		 	</div>
 		 </div>
 	</div>
+
+
+{#    反爬虫 之 禁止F12#}
+    <script type="text/javascript">
+
+   document.oncontextmenu = new Function("return false;");
+   document.onkeydown =document.onkeyup = document.onkeypress=function(){
+      if(window.event.keyCode == 123) {
+          window.event.cancelBubble = true;
+          window.event.returnValue=false;
+          return(false);
+      }
+  }
+
+    </script>
+
+
+
 	<script type="text/javascript">
 
         //定时任务，没各10分钟进行一次身份验证

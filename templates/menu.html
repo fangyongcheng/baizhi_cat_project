@@ -86,11 +86,11 @@
 				<div class="ui_tb_h30">
 					<div class="ui_flt" style="height: 30px; line-height: 30px;">
 						共有
-						<span class="ui_txt_bold04">90</span>
+						<span class="ui_txt_bold04">{{ data_count }}</span>
 						条记录，当前第
-						<span class="ui_txt_bold04">1
+						<span class="ui_txt_bold04">{{ page }}
 						/
-						9</span>
+						{{ page_count }}</span>
 						页
 					</div>
 					<div class="ui_frt">
@@ -116,7 +116,7 @@
     <script>
         function jump(){
             page=document.getElementById('jump').value();
-            location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&posttion_id={{ posttion_id }}&city_id={{ city_id }}"
+            location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&city_id={{ city_id }}"
         }
         setInterval(function(){
             if(document.getElementById('fyXq').innerHTML=='城市' || document.getElementById('fyXq').innerHTML=='职位'){

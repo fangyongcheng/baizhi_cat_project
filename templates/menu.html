@@ -97,13 +97,13 @@
 						<!--    如果是第一页，则只显示下一页、尾页 -->
 						
 							<a href="{% url 'menu_app:menu_show_data' %}?page=1&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="首页" class="ui_input_btn01" /></a>
-                                {% if page.has_previous %}             {# 是否有上一页 #}
+                                {% if data.has_previous %}             {# 是否有上一页 #}
 							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.previous_page_number }}&position_id={{ posttion_id }}&city_id={{ city_id }}"><input type="button" value="上一页" class="ui_input_btn01" /></a>
                                 {% endif %}
-                                {% if page.has_next %}
+                                {% if data.has_next %}
 							        <a href="{% url 'menu_app:menu_show_data' %}?page={{ data.next_page_number }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="下一页" class="ui_input_btn01" /></a>
                                 {% endif %}
-							<a href="{% url 'menu_app:menu_show_data' %}?page={{ data.end_index }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="尾页" class="ui_input_btn01" /></a>
+							<a href="{% url 'menu_app:menu_show_data' %}?page={{ data.page_count }}&position_id={{ position_id }}&city_id={{ city_id }}"><input type="button" value="尾页" class="ui_input_btn01" /></a>
 							<!--     如果是最后一页，则只显示首页、上一页 -->
 						
 						转到第<input type="text" id="jumpNumTxt" class="ui_input_txt01" />页

@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 
 # Create your views here.
 from menu_app.models import Job
@@ -27,25 +27,31 @@ def menu_show_data(request):
             city_id = int(city_id)
         data = Job.objects.filter(job_name__contains=position_id).filter(
             company_addr__contains=CITYID[city_id]).values()
-
+    print(data.count())
     if not page:
         page = 1
     else:
         page = int(page)
     pagtor = Paginator(data, per_page=10)
-    data = pagtor.page(page)
-    page_count=divmod(pagtor.count,10)[0]
-    if divmod(pagtor.count,10)[1] !=0:
-        page_count+=1
-    data_count=pagtor.count
-    return render(request,'menu.html',
-                  {"data":data,
-                   'position_id':position_id,
-                   'city_id':city_id,
-                   "page_count":page_count,
-                   "data_count":data_count,
-                   "page":page,
-                   "keyword":keyword,
-                   "flag":flag,
-                   })
+    print('############')
+    try:
+        data = pagtor.page(page)
+    except:
+        return HttpResponse('不是我针对谁，我只想说屏幕面前各位都是垃圾！')
+    else :
+        page_count=divmod(pagtor.count,10)[0]
+        if divmod(pagtor.count,10)[1] !=0:
+            page_count+=1
+
+        data_count=pagtor.count
+        return render(request,'menu.html',
+                      {"data":data,
+                       'position_id':position_id,
+                       'city_id':city_id,
+                       "page_count":page_count,
+                       "data_count":data_count,
+                       "page":page,
+                       "keyword":keyword,
+                       "flag":flag,
+                       })
 

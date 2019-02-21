@@ -30,8 +30,8 @@
 							<select name="fangyuanEntity.fyXqCode" id="fyXq" class="ui_select01" onchange="getFyDhListByFyXqCode();">
                                 <option value="" id="a"
                                 >--请选择--</option>
-                                <option value="">城市</option>
-                                <option value="">职位</option>
+                                <option value="1">城市</option>
+                                <option value="2">职位</option>
                             </select>
 							<input type="text" id="fyZldz" name="fangyuanEntity.fyZldz" class="ui_input_txt02" />
 							<input type="button" value="查询" class="ui_input_btn01" onclick="search(); "/>
@@ -86,11 +86,11 @@
 				<div class="ui_tb_h30">
 					<div class="ui_flt" style="height: 30px; line-height: 30px;">
 						共有
-						<span class="ui_txt_bold04">{{ data_count }}</span>
+						<span class="ui_txt_bold04">90</span>
 						条记录，当前第
-						<span class="ui_txt_bold04">{{ page }}
+						<span class="ui_txt_bold04">1
 						/
-						{{ page_count }}</span>
+						9</span>
 						页
 					</div>
 					<div class="ui_frt">
@@ -107,23 +107,30 @@
 							<!--     如果是最后一页，则只显示首页、上一页 -->
 						
 						转到第<input type="text" id="jumpNumTxt" class="ui_input_txt01" />页
-							 <input type="button" class="ui_input_btn01" value="跳转" id='jump' onclick="jump()" />
+							 <input type="button" class="ui_input_btn01" value="跳转" id='jump' onclick="jump1()" />
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
     <script>
-        function jump(){
-            page=document.getElementById('jump').value();
+        function jump1(){
+            page=document.getElementById('jumpNumTxt').value;
+            console.log(page);
             location.href="{% url 'menu_app:menu_show_data' %}?page="+page+"&position_id={{ position_id }}&city_id={{ city_id }}"
         }
-        setInterval(function(){
-            if(document.getElementById('fyXq').innerHTML=='城市' || document.getElementById('fyXq').innerHTML=='职位'){
-                document.getElementsByClassName('ui_input_btn01')[0].disabled=false
-            }
-            else{document.getElementsByClassName('ui_input_btn01')[0].disabled=true}
-        },100)
+        function search(){
+            tiaojian1=document.getElementById('fyXq').value;
+            tiaojian2=document.getElementById('fyZldz').value;
+            $.ajax({
+           type:"get",
+           url:"{% url 'menu_app:menu_show_data' %}",
+           data:"flag="+tiaojian1+"&keyword="+tiaojian2,
+           success:function (msg) {
+               
+           }
+        })
+        }
     </script>
 </body>
 </html>

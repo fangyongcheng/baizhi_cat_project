@@ -6,6 +6,10 @@
 <title>百智招聘</title>
 <link href="{% static 'style/authority/basic_layout.css'%}" rel="stylesheet" type="text/css">
 <link href="{% static 'style/authority/common_style.css' %}" rel="stylesheet" type="text/css">
+<meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+<script src="/static/js/echarts.js"></script>
+<script src="/static/js/jquery-1.7.2.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -21,6 +25,74 @@
 
 		
 	</div>
+ <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+
+    title: {
+        text: '简历数量'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['pythonWeb', '爬虫', '大数据','AI']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        data: ['北京', '上海', '广州', '深圳']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'pythonWeb',
+            type:'line',
+            step: 'start',
+            data:[{{ data.0 }},{{ data.1 }},{{ data.2 }},{{ data.3 }}]
+        },
+        {
+            name:'爬虫',
+            type:'line',
+            step: 'middle1',
+            data:[{{ data.4 }},{{ data.5 }},{{ data.6 }},{{ data.7 }}]
+        },
+        {
+            name:'大数据',
+            type:'line',
+            step: 'zhongjian',
+            data:[{{ data.8}},{{ data.9 }},{{ data.10 }},{{ data.11 }}]
+        },
+        {
+            name:'AI',
+            type:'line',
+            step: 'end',
+            data:[{{ data.12 }},{{ data.13 }},{{ data.14 }},{{ data.15 }}]
+        }
+    ]
+};
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
 
 </body>
 </html>

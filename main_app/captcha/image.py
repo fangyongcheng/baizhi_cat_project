@@ -22,7 +22,7 @@ except ImportError:
     wheezy_captcha = None
 
 DATA_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data')
-DEFAULT_FONTS = [os.path.join(DATA_DIR, 'DroidSansMono.ttf')]
+DEFAULT_FONTS = [os.path.join(DATA_DIR, 'arial.ttf')]
 
 if wheezy_captcha:
     __all__ = ['ImageCaptcha', 'WheezyCaptcha']
@@ -164,18 +164,18 @@ class ImageCaptcha(_Captcha):
             font = random.choice(self.truefonts)
             w, h = draw.textsize(c, font=font)
 
-            dx = random.randint(0, 4)
-            dy = random.randint(0, 6)
+            dx = random.randint(0, 0)
+            dy = random.randint(0, 0)
             im = Image.new('RGBA', (w + dx, h + dy))
-            Draw(im).text((dx, dy), c, font=font, fill=color)
+            Draw(im).text((dx, dy), c, font=font, fill=(105,105,105))
 
             # rotate
             im = im.crop(im.getbbox())
-            im = im.rotate(random.uniform(-30, 30), Image.BILINEAR, expand=1)
+            im = im.rotate(random.uniform(0, 0), Image.BILINEAR, expand=1)
 
             # warp
-            dx = w * random.uniform(0.1, 0.3)
-            dy = h * random.uniform(0.2, 0.3)
+            dx = w * random.uniform(0, 0)
+            dy = h * random.uniform(0, 0)
             x1 = int(random.uniform(-dx, dx))
             y1 = int(random.uniform(-dy, dy))
             x2 = int(random.uniform(-dx, dx))
@@ -223,8 +223,8 @@ class ImageCaptcha(_Captcha):
 
         :param chars: text to be generated.
         """
-        background = random_color(238, 255)
-        color = random_color(10, 200, random.randint(220, 255))
+        background = random_color(255, 255)
+        color = random_color(0, 0)
         im = self.create_captcha_image(chars, color, background)
         self.create_noise_dots(im, color)
         self.create_noise_curve(im, color)
@@ -237,5 +237,5 @@ def random_color(start, end, opacity=None):
     green = random.randint(start, end)
     blue = random.randint(start, end)
     if opacity is None:
-        return (red, green, blue)
+        return (255,255,255)
     return (red, green, blue, opacity)

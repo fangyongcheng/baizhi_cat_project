@@ -25,3 +25,4 @@ urlpatterns = [
     # path('menu_show_error/',views.menu_show_error,name='menu_show_error'),
 
 ]
+

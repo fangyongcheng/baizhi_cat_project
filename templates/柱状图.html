@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>柱状图</title>
+    <!-- 引入 echarts.js -->
+
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script src="/static/js/jquery-1.7.2.js"></script>
+    <script src="/static/js/echarts.js"></script>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var echart = echarts.init(document.getElementById('main'));
+        echart.showLoading();
+// 显示标题，图例和空的坐标轴
+        echart.setOption({
+            title: {
+                text: '四个城市的招聘数量对比'
+            },
+            tooltip: {},
+            legend: {
+                data:['']
+            },
+            xAxis: {
+                data: ['北京','上海','广州','深圳']
+            },
+            yAxis: {},
+            series: [{
+                name: '数量',
+                type: 'bar',
+                data: []
+            }]
+        });
+
+        // 异步加载数据
+        $.get("{% url 'echarts_app:barajax' %}").done(function (data) {
+            // 填入数据
+            echart.hideLoading();
+            echart.setOption({
+                series: [{
+                    // 根据名字对应到相应的系列
+                    name: '数量',
+                    data: data
+                }]
+            });
+        });
+        // 使用刚指定的配置项和数据显示图表。
+    </script>
+    <h1></h1>
+</body>
+</html>

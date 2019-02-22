@@ -1,9 +1,14 @@
+import re
+from django.contrib.sites import requests
+from redis import Redis
 from django.shortcuts import render,redirect,HttpResponse
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from login_regist_app.models import User
 # Create your views here.
+
+url = "http://www.ip138.com/ips138.asp?ip=%s&action=2"
 
 
 def login(request):
@@ -26,6 +31,20 @@ def login_logic(request):
         return HttpResponse('用户名或密码错误！')
 
 def login_ok(request):
+    # redis保存
+    res = requests.get(url % request.META["REMOTE_ADDR"])
+    rule = '本站数据：(.*?) '
+    rule = re.compile(rule)
+    res.encoding = 'gb2312'
+    addr = rule.findall(res.text)[0]
+    if '市' in addr:
+        addrs=addr.split('市')
+    elif '省' in addr:
+        addrs=addr.split('省')
+    else:
+        addrs=['北京','北京']
+    red = Redis(host='172.16.13.25', port=7000)
+    red.zincrby('addr',addrs[0],1)
     return redirect('main_app:main')
 
 

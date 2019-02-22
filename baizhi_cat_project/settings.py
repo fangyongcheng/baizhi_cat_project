@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'menu_app',
     'main_app',
     'login_regist_app',
+    'echarts_app',
 
 ]
 
@@ -92,7 +93,16 @@ DATABASES = {
     }
 }
 
-
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://172.16.13.25:7000",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {"max_connections": 100},
+        }
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 

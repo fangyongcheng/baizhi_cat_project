@@ -8,12 +8,12 @@
 </head>
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="main_bar" style="width: 600px;height:400px;"></div>
     <script src="/static/js/jquery-1.7.2.js"></script>
     <script src="/static/js/echarts.js"></script>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var echart = echarts.init(document.getElementById('main'));
+        var echart = echarts.init(document.getElementById('main_bar'));
         echart.showLoading();
 // 显示标题，图例和空的坐标轴
         echart.setOption({
